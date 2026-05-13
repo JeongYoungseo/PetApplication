@@ -7,14 +7,17 @@ public class RecommendItem {
 //    private int imageRes;
     private String category;
     private String price;
+    public int score;
 
 
-    public RecommendItem(String name, String desc, String category, String price){
+
+    public RecommendItem(String name, String desc, String category, String price, int score){
         this.name = name;
         this.desc = desc;
 //        this.imageRes = imageRes;
         this.category = category;
         this.price = price;
+        this.score = score;
     }
 
     public String getName(){

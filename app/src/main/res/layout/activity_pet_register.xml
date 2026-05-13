@@ -1,0 +1,295 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- 1페이지 카드 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_basic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 제목 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="반려동물 기본정보"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- 📷 사진 등록 영역 -->
+                <ImageView
+                    android:id="@+id/img_pet"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_launcher"
+                    android:scaleType="centerCrop"/>
+
+                <Button
+                    android:id="@+id/btn_add_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="사진 등록"
+                    android:layout_marginTop="8dp"/>
+
+                <!-- 이름 -->
+                <EditText
+                    android:id="@+id/et_pet_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="이름"/>
+
+                <!-- 🐶🐱 종 선택 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="종 선택"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_dog"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="강아지"/>
+
+                    <Button
+                        android:id="@+id/btn_cat"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="고양이"/>
+                </LinearLayout>
+
+                <!-- 나이 -->
+                <EditText
+                    android:id="@+id/et_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="나이"
+                    android:inputType="number"/>
+
+                <!-- 체중 -->
+                <EditText
+                    android:id="@+id/et_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="체중"/>
+
+                <!-- 다음 버튼 -->
+                <Button
+                    android:id="@+id/btn_next1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="다음"
+                    android:layout_marginTop="12dp"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- 2페이지 카드 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:padding="16dp"
+            android:visibility="gone"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 제목 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="맞춤 정보"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- 🧪 알러지 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="알러지 (여러 개 선택 가능)"
+                    android:layout_marginTop="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/cb_chicken"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="닭고기"/>
+                    <CheckBox
+                        android:id="@+id/cb_grain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="곡물"/>
+                    <CheckBox
+                        android:id="@+id/cb_other_allergy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="기타"/>
+                    <CheckBox
+                        android:id="@+id/cb_none_allergy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="없음"/>
+                </LinearLayout>
+
+                <!-- 🏥 건강상태 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="건강상태"
+                    android:layout_marginTop="12dp"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_health"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rb_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="정상"/>
+                    <RadioButton
+                        android:id="@+id/rb_obesity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="비만"/>
+                    <RadioButton
+                        android:id="@+id/rb_skin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="피부질환"/>
+                    <RadioButton
+                        android:id="@+id/rb_joint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="관절 약함"/>
+                    <RadioButton
+                        android:id="@+id/rb_other_health"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="기타"/>
+                </RadioGroup>
+
+                <!-- ⚡ 활동량 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="활동량"
+                    android:layout_marginTop="12dp"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rb_high"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="높음"/>
+                    <RadioButton
+                        android:id="@+id/rb_mid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="보통"/>
+                    <RadioButton
+                        android:id="@+id/rb_low"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="낮음"/>
+                </RadioGroup>
+
+                <!-- 다음 버튼 -->
+                <Button
+                    android:id="@+id/btn_next2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="다음"
+                    android:layout_marginTop="12dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- 3페이지 카드 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:padding="16dp"
+            android:visibility="gone"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 제목 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="등록 완료"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- 결과 출력 -->
+                <TextView
+                    android:id="@+id/tv_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="결과"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- 완료 버튼 -->
+                <Button
+                    android:id="@+id/btn_finish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="등록 완료"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

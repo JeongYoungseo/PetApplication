@@ -11,7 +11,9 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- 프로필 카드 -->
+        <!-- =========================
+             프로필 카드
+        ========================= -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -36,17 +38,21 @@
                     android:orientation="vertical"
                     android:layout_marginStart="16dp">
 
+                    <!-- 🐶 동적 이름 -->
                     <TextView
+                        android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="멍멍이"
+                        android:text="이름"
                         android:textSize="24sp"
                         android:textStyle="bold"/>
 
+                    <!-- 🐾 동적 정보 -->
                     <TextView
+                        android:id="@+id/tv_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3살 · 말티즈"/>
+                        android:text="정보"/>
 
                 </LinearLayout>
 
@@ -54,7 +60,9 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- 추천 제목 -->
+        <!-- =========================
+             추천 제목
+        ========================= -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +72,9 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="12dp"/>
 
-        <!-- 추천 카드 -->
+        <!-- =========================
+             추천 리스트
+        ========================= -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_recommend"
             android:layout_width="match_parent"
