@@ -1,6 +1,7 @@
 package kr.ac.kopo.petapplication.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,50 +12,34 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import kr.ac.kopo.petapplication.data.PetStore;
-
 import kr.ac.kopo.petapplication.R;
-import android.net.Uri;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
+import kr.ac.kopo.petapplication.data.PetStore;
 
 public class PetRegisterActivity extends AppCompatActivity {
 
-    // =========================
-    // 카드
-    // =========================
     CardView cardBasic, cardCustom, cardResult;
 
-    // =========================
-    // 1페이지
-    // =========================
     ImageView imgPet;
     Button btnPhoto, btnDog, btnCat, btnNext1;
 
     EditText etName, etAge, etWeight;
 
-    String petType = "";
-
-    // =========================
-    // 2페이지
-    // =========================
     CheckBox cbChicken, cbGrain, cbOtherAllergy, cbNoneAllergy;
     RadioGroup rgHealth, rgActivity;
     Button btnNext2;
 
+    TextView tvResult;
+    Button btnFinish;
+
+    String petType = "";
     String allergy = "";
     String health = "";
     String activityLevel = "";
-
-    // =========================
-    // 3페이지
-    // =========================
-    TextView tvResult;
-    Button btnFinish;
 
     ActivityResultLauncher<Intent> galleryLauncher;
 
@@ -63,6 +48,9 @@ public class PetRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_register);
 
+        // =========================
+        // 사진 선택기
+        // =========================
         galleryLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -72,11 +60,17 @@ public class PetRegisterActivity extends AppCompatActivity {
 
                         Uri imageUri = result.getData().getData();
 
-                        // 이미지 표시
-                        imgPet.setImageURI(imageUri);
+                        if (imageUri != null) {
 
-                        // 저장
-                        PetStore.imageUri = imageUri.toString();
+                            // ⭐ 중요: 영구 권한 확보
+                            getContentResolver().takePersistableUriPermission(
+                                    imageUri,
+                                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                            );
+
+                            imgPet.setImageURI(imageUri);
+                            PetStore.imageUri = imageUri.toString();
+                        }
                     }
                 }
         );
@@ -89,7 +83,7 @@ public class PetRegisterActivity extends AppCompatActivity {
         cardResult = findViewById(R.id.card_result);
 
         // =========================
-        // 1페이지 연결
+        // 1페이지
         // =========================
         imgPet = findViewById(R.id.img_pet);
         btnPhoto = findViewById(R.id.btn_add_photo);
@@ -102,7 +96,7 @@ public class PetRegisterActivity extends AppCompatActivity {
         etWeight = findViewById(R.id.et_weight);
 
         // =========================
-        // 2페이지 연결
+        // 2페이지
         // =========================
         cbChicken = findViewById(R.id.cb_chicken);
         cbGrain = findViewById(R.id.cb_grain);
@@ -114,7 +108,7 @@ public class PetRegisterActivity extends AppCompatActivity {
         btnNext2 = findViewById(R.id.btn_next2);
 
         // =========================
-        // 3페이지 연결
+        // 3페이지
         // =========================
         tvResult = findViewById(R.id.tv_result);
         btnFinish = findViewById(R.id.btn_finish);
@@ -127,21 +121,22 @@ public class PetRegisterActivity extends AppCompatActivity {
         cardResult.setVisibility(View.GONE);
 
         // =========================
-        // 📷 사진
+        // 사진 선택
         // =========================
         btnPhoto.setOnClickListener(v -> {
 
-            Intent intent = new Intent(
-                    Intent.ACTION_PICK
-            );
-
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("image/*");
+
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
 
             galleryLauncher.launch(intent);
         });
 
         // =========================
-        // 🐶 강아지 선택
+        // 강아지 / 고양이
         // =========================
         btnDog.setOnClickListener(v -> {
             petType = "강아지";
@@ -149,9 +144,6 @@ public class PetRegisterActivity extends AppCompatActivity {
             btnCat.setSelected(false);
         });
 
-        // =========================
-        // 🐱 고양이 선택
-        // =========================
         btnCat.setOnClickListener(v -> {
             petType = "고양이";
             btnCat.setSelected(true);
@@ -159,7 +151,7 @@ public class PetRegisterActivity extends AppCompatActivity {
         });
 
         // =========================
-        // 1 → 2 페이지
+        // 1 → 2
         // =========================
         btnNext1.setOnClickListener(v -> {
             cardBasic.setVisibility(View.GONE);
@@ -167,11 +159,10 @@ public class PetRegisterActivity extends AppCompatActivity {
         });
 
         // =========================
-        // 2 → 3 페이지
+        // 2 → 3
         // =========================
         btnNext2.setOnClickListener(v -> {
 
-            // ===== 알러지 =====
             StringBuilder sb = new StringBuilder();
 
             if (cbChicken.isChecked()) sb.append("닭고기 ");
@@ -181,53 +172,39 @@ public class PetRegisterActivity extends AppCompatActivity {
 
             allergy = sb.toString().trim();
 
-            // ===== 건강 =====
             int healthId = rgHealth.getCheckedRadioButtonId();
             RadioButton healthBtn = findViewById(healthId);
+            if (healthBtn != null) health = healthBtn.getText().toString();
 
-            if (healthBtn != null)
-                health = healthBtn.getText().toString();
-
-            // ===== 활동량 =====
             int actId = rgActivity.getCheckedRadioButtonId();
             RadioButton actBtn = findViewById(actId);
-
-            if (actBtn != null)
-                activityLevel = actBtn.getText().toString();
-
-            // ===== 입력값 =====
-            String name = etName.getText().toString();
-            String age = etAge.getText().toString();
-            String weight = etWeight.getText().toString();
+            if (actBtn != null) activityLevel = actBtn.getText().toString();
 
             PetStore.name = etName.getText().toString();
             PetStore.type = petType;
             PetStore.age = etAge.getText().toString();
             PetStore.weight = etWeight.getText().toString();
-
             PetStore.allergy = allergy;
             PetStore.health = health;
             PetStore.activity = activityLevel;
 
-            // ===== 결과 화면 출력 =====
             String result =
-                    "이름: " + name + "\n" +
+                    "이름: " + PetStore.name + "\n" +
                             "종: " + petType + "\n" +
-                            "나이: " + age + "\n" +
-                            "체중: " + weight + "\n\n" +
+                            "나이: " + PetStore.age + "\n" +
+                            "체중: " + PetStore.weight + "\n\n" +
                             "알러지: " + allergy + "\n" +
                             "건강: " + health + "\n" +
                             "활동량: " + activityLevel;
 
             tvResult.setText(result);
 
-            // ===== 페이지 이동 =====
             cardCustom.setVisibility(View.GONE);
             cardResult.setVisibility(View.VISIBLE);
         });
 
         // =========================
-        // 완료 → 홈 이동
+        // 완료
         // =========================
         btnFinish.setOnClickListener(v -> {
 

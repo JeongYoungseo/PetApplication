@@ -1,5 +1,6 @@
 package kr.ac.kopo.petapplication.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -49,15 +50,22 @@ public class HomeFragment extends Fragment {
         // =========================
         // 반려동물 정보 표시
         // =========================
-//        if (PetStore.imageUri != null) {
-//
-//            if (PetStore.imageUri != null) {
-//
-//                imgProfile.setImageURI(
-//                        Uri.parse(PetStore.imageUri)
-//                );
-//            }
-       // }
+        // =========================
+        if (PetStore.imageUri != null && !PetStore.imageUri.isEmpty()) {
+            try {
+                Uri uri = Uri.parse(PetStore.imageUri);
+
+                getContext().getContentResolver().takePersistableUriPermission(
+                        uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                );
+
+                imgProfile.setImageURI(uri);
+
+            } catch (Exception e) {
+                imgProfile.setImageResource(R.drawable.ic_launcher_foreground);
+            }
+        }
         if (PetStore.name != null) {
 
             tvName.setText(PetStore.name);
@@ -336,3 +344,4 @@ public class HomeFragment extends Fragment {
         }
     }
 }
+
