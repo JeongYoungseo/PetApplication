@@ -30,4 +30,22 @@ public class ScoreRule {
         allergyMap.put("기타", -10);
         allergyMap.put("없음", 0);
     }
+    public static int getTotalScore(String type, float weight,
+                                    String health, String allergy) {
+
+        int score = 0;
+
+        score += typeMap.getOrDefault(type, 0);
+        score += weightMap.getOrDefault(getWeightType(weight), 0);
+        score += healthMap.getOrDefault(health, 0);
+        score += allergyMap.getOrDefault(allergy, 0);
+
+        return score;
+    }
+    public static String getWeightType(float weight) {
+
+        if (weight < 5) return "소형";
+        else if (weight < 15) return "중형";
+        else return "대형";
+    }
 }

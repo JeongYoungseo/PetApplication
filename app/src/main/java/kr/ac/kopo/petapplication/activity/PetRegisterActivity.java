@@ -11,12 +11,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import kr.ac.kopo.petapplication.data.PetStore;
 
 import kr.ac.kopo.petapplication.R;
+import android.net.Uri;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
 
 public class PetRegisterActivity extends AppCompatActivity {
 
@@ -52,10 +56,30 @@ public class PetRegisterActivity extends AppCompatActivity {
     TextView tvResult;
     Button btnFinish;
 
+    ActivityResultLauncher<Intent> galleryLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_register);
+
+        galleryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+
+                    if (result.getResultCode() == RESULT_OK
+                            && result.getData() != null) {
+
+                        Uri imageUri = result.getData().getData();
+
+                        // 이미지 표시
+                        imgPet.setImageURI(imageUri);
+
+                        // 저장
+                        PetStore.imageUri = imageUri.toString();
+                    }
+                }
+        );
 
         // =========================
         // 카드 연결
@@ -103,10 +127,17 @@ public class PetRegisterActivity extends AppCompatActivity {
         cardResult.setVisibility(View.GONE);
 
         // =========================
-        // 📷 사진 (임시)
+        // 📷 사진
         // =========================
         btnPhoto.setOnClickListener(v -> {
-            imgPet.setImageResource(R.mipmap.ic_launcher);
+
+            Intent intent = new Intent(
+                    Intent.ACTION_PICK
+            );
+
+            intent.setType("image/*");
+
+            galleryLauncher.launch(intent);
         });
 
         // =========================

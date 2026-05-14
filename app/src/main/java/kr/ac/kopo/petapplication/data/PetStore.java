@@ -10,4 +10,5 @@ public class PetStore {
     public static String allergy;
     public static String health;
     public static String activity;
+    public static String imageUri;
 }

@@ -3,6 +3,7 @@ package kr.ac.kopo.petapplication.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,10 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.View
         holder.price.setText(item.getPrice());
         holder.category.setText(item.getCategory());
 
+        holder.imgFood.setImageResource(
+                item.getImageRes()
+        );
+
         holder.itemView.setOnClickListener(v -> {
             Toast.makeText(v.getContext(),
                     item.getName(),
@@ -55,11 +60,12 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        ImageView imgFood;
         TextView name, desc, category, price;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            imgFood = itemView.findViewById(R.id.img_food);
             name = itemView.findViewById(R.id.txt_name);
             desc = itemView.findViewById(R.id.txt_desc);
             category = itemView.findViewById(R.id.txt_category);
