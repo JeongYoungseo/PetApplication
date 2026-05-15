@@ -1,109 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_beige">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="24dp">
+
+        <!-- Top title pill -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🐶 멍냥케어 🐱"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_dark"
+            android:background="@drawable/bg_pill_white"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="8dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="2dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="반려동물 등록"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_dark"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Progress Indicator -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp"
+            android:paddingHorizontal="32dp">
+            
+            <TextView
+                android:id="@+id/tv_step1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:text="1"
+                android:textColor="@color/text_dark"
+                android:gravity="center"
+                android:background="@drawable/bg_step_selector"
+                android:textStyle="bold"/>
+                
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/text_gray"/>
+
+            <TextView
+                android:id="@+id/tv_step2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:text="2"
+                android:textColor="@color/text_dark"
+                android:gravity="center"
+                android:background="@drawable/bg_step_selector"
+                android:textStyle="bold"/>
+                
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/text_gray"/>
+
+            <TextView
+                android:id="@+id/tv_step3"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:text="3"
+                android:textColor="@color/text_dark"
+                android:gravity="center"
+                android:background="@drawable/bg_step_selector"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
         <!-- 1페이지 카드 -->
         <androidx.cardview.widget.CardView
             android:id="@+id/card_basic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
-
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@android:color/transparent">
+            
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- 제목 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="반려동물 기본정보"
-                    android:textSize="20sp"
+                    android:text="기본정보"
+                    android:textSize="14sp"
                     android:textStyle="bold"
+                    android:textColor="@color/text_dark"
                     android:layout_marginBottom="12dp"/>
-
-                <!-- 📷 사진 등록 영역 -->
-                <ImageView
-                    android:id="@+id/img_pet"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
-                    android:scaleType="centerCrop"/>
-
-                <Button
-                    android:id="@+id/btn_add_photo"
+                    
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="사진 등록"
-                    android:layout_marginTop="8dp"/>
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/white">
 
-                <!-- 이름 -->
-                <EditText
-                    android:id="@+id/et_pet_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="이름"/>
-
-                <!-- 🐶🐱 종 선택 -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="종 선택"
-                    android:layout_marginTop="10dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btn_dog"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="강아지"/>
+                        android:orientation="vertical"
+                        android:padding="24dp">
 
-                    <Button
-                        android:id="@+id/btn_cat"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="고양이"/>
-                </LinearLayout>
+                        <!-- 사진 등록 영역 -->
+                        <FrameLayout
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="24dp"
+                            android:background="@drawable/bg_input_beige">
+                            <ImageView
+                                android:id="@+id/img_pet"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"/>
+                            <Button
+                                android:id="@+id/btn_add_photo"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent"
+                                android:text="사진등록"
+                                android:textColor="@color/text_gray"
+                                android:textSize="14sp"/>
+                        </FrameLayout>
 
-                <!-- 나이 -->
-                <EditText
-                    android:id="@+id/et_age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="나이"
-                    android:inputType="number"/>
+                        <!-- 이름 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이름"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="4dp"/>
+                        <EditText
+                            android:id="@+id/et_pet_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_input_beige"
+                            android:paddingHorizontal="16dp"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="16dp"/>
 
-                <!-- 체중 -->
-                <EditText
-                    android:id="@+id/et_weight"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="체중"/>
+                        <!-- 종 선택 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="종"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="4dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="16dp">
 
-                <!-- 다음 버튼 -->
-                <Button
-                    android:id="@+id/btn_next1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="다음"
-                    android:layout_marginTop="12dp"/>
+                            <Button
+                                android:id="@+id/btn_dog"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="강아지"
+                                android:textColor="@color/text_dark"
+                                android:textSize="14sp"
+                                android:background="@drawable/bg_pill_selector"
+                                app:backgroundTint="@null"
+                                android:minHeight="36dp"
+                                android:paddingHorizontal="20dp"
+                                android:layout_marginEnd="8dp"
+                                style="?android:attr/borderlessButtonStyle"/>
+
+                            <Button
+                                android:id="@+id/btn_cat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="고양이"
+                                android:textColor="@color/text_dark"
+                                android:textSize="14sp"
+                                android:background="@drawable/bg_pill_selector"
+                                app:backgroundTint="@null"
+                                android:minHeight="36dp"
+                                android:paddingHorizontal="20dp"
+                                style="?android:attr/borderlessButtonStyle"/>
+                        </LinearLayout>
+
+                        <!-- 나이 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="나이"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="4dp"/>
+                        <EditText
+                            android:id="@+id/et_age"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_input_beige"
+                            android:paddingHorizontal="16dp"
+                            android:inputType="number"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="16dp"/>
+
+                        <!-- 체중 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="체중"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="4dp"/>
+                        <EditText
+                            android:id="@+id/et_weight"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_input_beige"
+                            android:paddingHorizontal="16dp"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="24dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end">
+                            <Button
+                                android:id="@+id/btn_next1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="다음"
+                                android:textColor="@color/text_dark"
+                                android:textSize="14sp"
+                                android:background="@drawable/bg_pill_primary_light"
+                                app:backgroundTint="@null"
+                                android:minHeight="40dp"
+                                android:paddingHorizontal="24dp"
+                                style="?android:attr/borderlessButtonStyle"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
         <!-- 2페이지 카드 -->
@@ -111,138 +266,117 @@
             android:id="@+id/card_custom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:padding="16dp"
             android:visibility="gone"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@android:color/transparent">
+            
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- 제목 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="맞춤 정보"
-                    android:textSize="20sp"
+                    android:text="맞춤정보"
+                    android:textSize="14sp"
                     android:textStyle="bold"
+                    android:textColor="@color/text_dark"
                     android:layout_marginBottom="12dp"/>
 
-                <!-- 🧪 알러지 -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="알러지 (여러 개 선택 가능)"
-                    android:layout_marginTop="8dp"/>
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/white">
 
-                    <CheckBox
-                        android:id="@+id/cb_chicken"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="닭고기"/>
-                    <CheckBox
-                        android:id="@+id/cb_grain"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="곡물"/>
-                    <CheckBox
-                        android:id="@+id/cb_other_allergy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="기타"/>
-                    <CheckBox
-                        android:id="@+id/cb_none_allergy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="없음"/>
-                </LinearLayout>
+                        android:orientation="vertical"
+                        android:padding="24dp">
 
-                <!-- 🏥 건강상태 -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="건강상태"
-                    android:layout_marginTop="12dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="알러지 유무"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="8dp"/>
 
-                <RadioGroup
-                    android:id="@+id/rg_health"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        <!-- Using flex-like wrap or multiple layouts, simpler to just use horizontal LinearLayouts -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="16dp">
+                            <CheckBox android:id="@+id/cb_chicken" android:layout_width="wrap_content" android:layout_height="36dp" android:text="닭고기" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp" android:layout_marginEnd="8dp"/>
+                            <CheckBox android:id="@+id/cb_grain" android:layout_width="wrap_content" android:layout_height="36dp" android:text="곡물" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp" android:layout_marginEnd="8dp"/>
+                            <CheckBox android:id="@+id/cb_other_allergy" android:layout_width="wrap_content" android:layout_height="36dp" android:text="기타" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp" android:layout_marginEnd="8dp"/>
+                            <CheckBox android:id="@+id/cb_none_allergy" android:layout_width="wrap_content" android:layout_height="36dp" android:text="없음" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp"/>
+                        </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/rb_normal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="정상"/>
-                    <RadioButton
-                        android:id="@+id/rb_obesity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="비만"/>
-                    <RadioButton
-                        android:id="@+id/rb_skin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="피부질환"/>
-                    <RadioButton
-                        android:id="@+id/rb_joint"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="관절 약함"/>
-                    <RadioButton
-                        android:id="@+id/rb_other_health"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="기타"/>
-                </RadioGroup>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="건강상태"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="8dp"/>
 
-                <!-- ⚡ 활동량 -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="활동량"
-                    android:layout_marginTop="12dp"/>
+                        <RadioGroup
+                            android:id="@+id/rg_health"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="16dp">
+                            <RadioButton android:id="@+id/rb_normal" android:layout_width="wrap_content" android:layout_height="36dp" android:text="정상" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp" android:layout_marginEnd="8dp"/>
+                            <RadioButton android:id="@+id/rb_obesity" android:layout_width="wrap_content" android:layout_height="36dp" android:text="비만" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp" android:layout_marginEnd="8dp"/>
+                            <RadioButton android:id="@+id/rb_skin" android:layout_width="wrap_content" android:layout_height="36dp" android:text="피부질환" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp" android:layout_marginEnd="8dp"/>
+                            <RadioButton android:id="@+id/rb_joint" android:layout_width="wrap_content" android:layout_height="36dp" android:text="관절약함" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp" android:layout_marginEnd="8dp"/>
+                            <RadioButton android:id="@+id/rb_other_health" android:layout_width="wrap_content" android:layout_height="36dp" android:text="기타" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp"/>
+                        </RadioGroup>
 
-                <RadioGroup
-                    android:id="@+id/rg_activity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="활동량"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:layout_marginBottom="8dp"/>
 
-                    <RadioButton
-                        android:id="@+id/rb_high"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="높음"/>
-                    <RadioButton
-                        android:id="@+id/rb_mid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="보통"/>
-                    <RadioButton
-                        android:id="@+id/rb_low"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="낮음"/>
-                </RadioGroup>
+                        <RadioGroup
+                            android:id="@+id/rg_activity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="24dp">
+                            <RadioButton android:id="@+id/rb_high" android:layout_width="wrap_content" android:layout_height="36dp" android:text="높음" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp" android:layout_marginEnd="8dp"/>
+                            <RadioButton android:id="@+id/rb_mid" android:layout_width="wrap_content" android:layout_height="36dp" android:text="보통" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp" android:layout_marginEnd="8dp"/>
+                            <RadioButton android:id="@+id/rb_low" android:layout_width="wrap_content" android:layout_height="36dp" android:text="낮음" android:button="@null" android:background="@drawable/bg_tag_selector" android:paddingHorizontal="16dp" android:textColor="@color/tag_text" android:textSize="12sp"/>
+                        </RadioGroup>
 
-                <!-- 다음 버튼 -->
-                <Button
-                    android:id="@+id/btn_next2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="다음"
-                    android:layout_marginTop="12dp"/>
-
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end">
+                            <Button
+                                android:id="@+id/btn_next2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="다음"
+                                android:textColor="@color/text_dark"
+                                android:textSize="14sp"
+                                android:background="@drawable/bg_pill_primary_light"
+                                app:backgroundTint="@null"
+                                android:minHeight="40dp"
+                                android:paddingHorizontal="24dp"
+                                style="?android:attr/borderlessButtonStyle"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
         <!-- 3페이지 카드 -->
@@ -250,46 +384,68 @@
             android:id="@+id/card_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:padding="16dp"
             android:visibility="gone"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@android:color/transparent">
+            
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- 제목 -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="등록 완료"
-                    android:textSize="20sp"
+                    android:text="등록이 완료되었어요!"
+                    android:textSize="14sp"
                     android:textStyle="bold"
+                    android:textColor="@color/text_dark"
                     android:layout_marginBottom="12dp"/>
 
-                <!-- 결과 출력 -->
-                <TextView
-                    android:id="@+id/tv_result"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="결과"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/white">
 
-                <!-- 완료 버튼 -->
-                <Button
-                    android:id="@+id/btn_finish"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="등록 완료"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp">
 
+                        <!-- 결과 출력 (Hidden or repurposed to show formatted string if needed, keeping ID) -->
+                        <TextView
+                            android:id="@+id/tv_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="결과"
+                            android:textColor="@color/text_dark"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="24dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end">
+                            <Button
+                                android:id="@+id/btn_finish"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="완료"
+                                android:textColor="@color/text_dark"
+                                android:textSize="14sp"
+                                android:background="@drawable/bg_pill_primary_light"
+                                app:backgroundTint="@null"
+                                android:minHeight="40dp"
+                                android:paddingHorizontal="24dp"
+                                style="?android:attr/borderlessButtonStyle"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
 </ScrollView>

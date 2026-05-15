@@ -3,6 +3,7 @@ package kr.ac.kopo.petapplication.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -68,6 +69,15 @@ public class CareAdapter extends RecyclerView.Adapter<CareAdapter.CareViewHolder
         } else {
             holder.tvNextVaccine.setVisibility(View.GONE);
         }
+
+        // 👉 아이콘 데이터
+        if ("WALK".equals(item.type)) {
+            holder.imgCareIcon.setImageResource(R.drawable.ic_nav_calendar);
+        } else if ("VACCINE".equals(item.type)) {
+            holder.imgCareIcon.setImageResource(R.drawable.ic_care_syringe);
+        } else {
+            holder.imgCareIcon.setImageResource(R.drawable.ic_care_memo);
+        }
     }
 
     @Override
@@ -86,6 +96,8 @@ public class CareAdapter extends RecyclerView.Adapter<CareAdapter.CareViewHolder
         TextView tvLocation;
         TextView tvNextVaccine;
 
+        ImageView imgCareIcon;
+
         public CareViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -96,6 +108,8 @@ public class CareAdapter extends RecyclerView.Adapter<CareAdapter.CareViewHolder
             tvTime = itemView.findViewById(R.id.tvTime);
             tvLocation = itemView.findViewById(R.id.tvLocation);
             tvNextVaccine = itemView.findViewById(R.id.tvNextVaccine);
+
+            imgCareIcon = itemView.findViewById(R.id.imgCareIcon);
         }
     }
 }

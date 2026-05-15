@@ -2,7 +2,11 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.PetApplication" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary_beige</item>
+        <item name="colorOnPrimary">@color/text_dark</item>
+        <item name="android:windowBackground">@color/bg_beige</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="colorSurface">@color/white</item>
     </style>
 
     <style name="Theme.PetApplication" parent="Base.Theme.PetApplication" />

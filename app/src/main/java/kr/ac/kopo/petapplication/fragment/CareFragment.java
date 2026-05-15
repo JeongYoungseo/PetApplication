@@ -25,6 +25,7 @@ public class CareFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private CareAdapter adapter;
+    private Button btnWalk, btnVaccine, btnMemo;
 
     private String currentType = "WALK";
 
@@ -44,24 +45,30 @@ public class CareFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // 2. 버튼
-        Button btnWalk = rootView.findViewById(R.id.btnWalk);
-        Button btnVaccine = rootView.findViewById(R.id.btnVaccine);
-        Button btnMemo = rootView.findViewById(R.id.btnMemo);
+        btnWalk = rootView.findViewById(R.id.btnWalk);
+        btnVaccine = rootView.findViewById(R.id.btnVaccine);
+        btnMemo = rootView.findViewById(R.id.btnMemo);
         Button btnAdd = rootView.findViewById(R.id.btnAdd);
+
+        // 초기 상태
+        updateTabUI();
 
         // 3. 탭
         btnWalk.setOnClickListener(v -> {
             currentType = "WALK";
+            updateTabUI();
             refresh();
         });
 
         btnVaccine.setOnClickListener(v -> {
             currentType = "VACCINE";
+            updateTabUI();
             refresh();
         });
 
         btnMemo.setOnClickListener(v -> {
             currentType = "MEMO";
+            updateTabUI();
             refresh();
         });
 
@@ -162,6 +169,12 @@ public class CareFragment extends Fragment {
             etLocation.setVisibility(View.GONE);
             etNext.setVisibility(View.GONE);
         }
+    }
+
+    private void updateTabUI() {
+        if (btnWalk != null) btnWalk.setSelected(currentType.equals("WALK"));
+        if (btnVaccine != null) btnVaccine.setSelected(currentType.equals("VACCINE"));
+        if (btnMemo != null) btnMemo.setSelected(currentType.equals("MEMO"));
     }
 
     // refresh

@@ -23,6 +23,7 @@ import kr.ac.kopo.petapplication.data.PetStore;
 public class PetRegisterActivity extends AppCompatActivity {
 
     CardView cardBasic, cardCustom, cardResult;
+    TextView tvStep1, tvStep2, tvStep3;
 
     ImageView imgPet;
     Button btnPhoto, btnDog, btnCat, btnNext1;
@@ -76,11 +77,15 @@ public class PetRegisterActivity extends AppCompatActivity {
         );
 
         // =========================
-        // 카드 연결
+        // 카드 및 스텝 연결
         // =========================
         cardBasic = findViewById(R.id.card_basic);
         cardCustom = findViewById(R.id.card_custom);
         cardResult = findViewById(R.id.card_result);
+        
+        tvStep1 = findViewById(R.id.tv_step1);
+        tvStep2 = findViewById(R.id.tv_step2);
+        tvStep3 = findViewById(R.id.tv_step3);
 
         // =========================
         // 1페이지
@@ -119,6 +124,7 @@ public class PetRegisterActivity extends AppCompatActivity {
         cardBasic.setVisibility(View.VISIBLE);
         cardCustom.setVisibility(View.GONE);
         cardResult.setVisibility(View.GONE);
+        updateStep(1);
 
         // =========================
         // 사진 선택
@@ -156,6 +162,7 @@ public class PetRegisterActivity extends AppCompatActivity {
         btnNext1.setOnClickListener(v -> {
             cardBasic.setVisibility(View.GONE);
             cardCustom.setVisibility(View.VISIBLE);
+            updateStep(2);
         });
 
         // =========================
@@ -201,6 +208,7 @@ public class PetRegisterActivity extends AppCompatActivity {
 
             cardCustom.setVisibility(View.GONE);
             cardResult.setVisibility(View.VISIBLE);
+            updateStep(3);
         });
 
         // =========================
@@ -216,5 +224,11 @@ public class PetRegisterActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+    }
+
+    private void updateStep(int step) {
+        if (tvStep1 != null) tvStep1.setSelected(step == 1);
+        if (tvStep2 != null) tvStep2.setSelected(step == 2);
+        if (tvStep3 != null) tvStep3.setSelected(step == 3);
     }
 }

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/bg_beige">
 
     <FrameLayout
         android:id="@+id/frame_container"
@@ -19,6 +20,11 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_nav"
+        app:itemIconTint="@color/text_dark"
+        app:itemTextColor="@color/text_dark"
+        app:labelVisibilityMode="labeled"
+        app:elevation="8dp"
         app:menu="@menu/bottom_menu"/>
 
 </LinearLayout>

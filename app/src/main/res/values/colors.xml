@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <color name="bg_beige">#FFF8ED</color>
+    <color name="primary_beige">#F3D0AD</color>
+    <color name="primary_beige_light">#FAEDDE</color>
+    <color name="text_dark">#4A3E3D</color>
+    <color name="text_gray">#A19389</color>
+    <color name="bg_input">#FDF4E5</color>
+    <color name="card_stroke">#F3E9DD</color>
+    <color name="tag_bg">#F7EDDF</color>
+    <color name="tag_text">#C99363</color>
 </resources>
